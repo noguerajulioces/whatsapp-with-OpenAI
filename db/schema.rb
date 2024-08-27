@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_26_232641) do
+ActiveRecord::Schema[7.2].define(version: 2024_08_27_003357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "context"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
@@ -42,6 +50,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_26_232641) do
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
   end
 
+  add_foreign_key "conversations", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "reminders", "users"
 end
