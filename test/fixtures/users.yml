@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id           :bigint           not null, primary key
+#  name         :string
+#  phone_number :string
+#  settings     :jsonb
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+one:
+  name: MyString
+  phone_number: MyString
+  settings: 
+
+two:
+  name: MyString
+  phone_number: MyString
+  settings: 

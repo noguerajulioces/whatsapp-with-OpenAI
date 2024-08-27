@@ -1,8 +1,8 @@
-class OpenAI::OpenAIService
+class OpenAIService
   def initialize(message_content, context = nil)
     @message_content = message_content
-    @context = context || []
-    @client = OpenAI::Client.new
+    @context         = context || []
+    @client          = OpenAI::Client.new
   end
 
   def call
@@ -14,14 +14,14 @@ class OpenAI::OpenAIService
 
     def chat_parameters
       {
-        model: "gpt-4",
-        messages: build_messages,
+        model:      "gpt-4",
+        messages:   build_messages,
         max_tokens: 150
       }
     end
 
     def build_messages
-      messages = @context.map { |msg| { role: msg[:role], content: msg[:content] } }
+      messages = @context.map { | msg | { role: msg[:role], content: msg[:content] } }
       messages << { role: "user", content: @message_content }
       messages
     end
